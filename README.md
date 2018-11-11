@@ -1,6 +1,7 @@
 # meshigacha
 
 ![image](https://i.imgur.com/cbVQbRT.png)
+
 An application that decides today's rice created with Vue.js and OnsenUI supported PWA.
 
 ## Build Setup

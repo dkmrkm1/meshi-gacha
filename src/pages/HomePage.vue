@@ -10,18 +10,27 @@
     </v-ons-toolbar>
 
     <div class="header">
-      <img src="../assets/logo.png" alt="vue-logo">
+      <span>今日のメシは...</span>
+      <v-ons-card style="margin: 10px 50px;">?</v-ons-card>
+      <v-ons-button modifier="material large" style="width: 70%;">決める！！</v-ons-button>
     </div>
 
-    <v-ons-list-title>Vue.js Essential Links</v-ons-list-title>
+    <v-ons-list-title>メシリスト</v-ons-list-title>
     <v-ons-list>
-      <v-ons-list-item v-for="item in essentialLinks" @click="goTo(item.link)" :key="item.link">
-        <div class="left"><v-ons-icon fixed-width :icon="item.icon"></v-ons-icon></div>
+      <v-ons-list-item v-for="item in list" :key="item.link">
+        <div class="right" @click="close"><v-ons-icon fixed-width icon="fa-close"></v-ons-icon></div>
         <div class="center">{{ item.label }}</div>
-        <div class="right"><v-ons-icon icon="fa-external-link"></v-ons-icon></div>
       </v-ons-list-item>
     </v-ons-list>
 
+    <v-ons-list-title>メシリスト</v-ons-list-title>
+    <v-ons-row>
+      <v-ons-col width="50%" v-for="item in list" :key="item.link">
+        <v-ons-card>{{ item.label }}</v-ons-card>
+      </v-ons-col>
+    </v-ons-row>
+
+    <!--
     <v-ons-list-title>Vue.js Ecosystem</v-ons-list-title>
     <v-ons-row>
       <v-ons-col>
@@ -39,6 +48,14 @@
         <v-ons-card @click="goTo('https://github.com/vuejs/awesome-vue')">awesome-vue</v-ons-card>
       </v-ons-col>
     </v-ons-row>
+    -->
+
+    <v-ons-fab
+      position="bottom right"
+      :visible="fabVisible"
+    >
+      <v-ons-icon icon="fa-plus" style="cursor:pointer;"></v-ons-icon>
+    </v-ons-fab>
 
   </v-ons-page>
 </template>
@@ -48,32 +65,26 @@ export default {
   name: "home",
   data() {
     return {
-      msg: "Welcome",
-      essentialLinks: [
+      fabVisible: true,
+      msg: "メシガチャ！",
+      list: [
         {
-          label: "Core Docs",
-          link: "https://vuejs.org",
-          icon: "fa-book"
+          label: "王将"
         },
         {
-          label: "Community Chat",
-          link: "https://chat.vuejs.org",
-          icon: "fa-commenting"
+          label: "カレー"
         },
         {
-          label: "Forum",
-          link: "https://forum.vuejs.org",
-          icon: "fa-comments"
+          label: "ガスト"
         },
         {
-          label: "Twitter",
-          link: "https://twitter.com/vuejs",
-          icon: "fa-twitter"
+          label: "サイゼリア"
         },
         {
-          label: "Docs for this template",
-          link: "http://vuejs-templates.github.io/webpack/",
-          icon: "fa-file-text"
+          label: "ラーメン"
+        },
+        {
+          label: "honokuni"
         }
       ]
     };
@@ -83,35 +94,36 @@ export default {
       const newWindow = window.open(url, "_blank");
       newWindow.opener = null;
       newWindow.location = url;
+    },
+    close() {
+      alert("hogeho");
     }
   }
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .header {
+  margin-top: 30px;
   text-align: center;
 }
-
 img {
   max-width: 300px;
 }
-
 ons-list-title {
   text-transform: none;
 }
-
 ons-list-title:not(:first-of-type) {
   margin-top: 30px;
 }
-
 ons-card {
   text-align: center;
 }
-
 ons-list-item,
 ons-card {
   cursor: pointer;
+}
+.toolbar-button {
+  color: gray;
 }
 </style>

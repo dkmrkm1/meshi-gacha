@@ -2,7 +2,7 @@
   <v-ons-page>
     <v-ons-toolbar modifier="transparent"></v-ons-toolbar>
     <div class="header">
-      <img src="../assets/onsenui-logo.png" alt="onsenui-logo">
+      <img src="../assets/onsenui-logo.png" alt="meshi-logo">
     </div>
 
     <v-ons-list-title>Onsen UI Essential Links</v-ons-list-title>

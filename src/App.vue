@@ -15,18 +15,18 @@
 </template>
 
 <script>
-import HomePage from './pages/HomePage'
-import MenuPage from './pages/MenuPage'
+import HomePage from "./pages/HomePage";
+import MenuPage from "./pages/MenuPage";
 
 export default {
-  name: 'app',
+  name: "app",
   computed: {
     menuIsOpen: {
-      get () {
-        return this.$store.state.splitter.open
+      get() {
+        return this.$store.state.splitter.open;
       },
-      set (newValue) {
-        this.$store.commit('splitter/toggle', newValue)
+      set(newValue) {
+        this.$store.commit("splitter/toggle", newValue);
       }
     }
   },
@@ -34,11 +34,11 @@ export default {
     HomePage,
     MenuPage
   }
-}
+};
 </script>
 
 <style>
-ons-splitter-side[side=left][animation=overlay] {
-  border-right: 1px solid #BBB;
+ons-splitter-side[side="left"][animation="overlay"] {
+  border-right: 1px solid #bbb;
 }
 </style>
