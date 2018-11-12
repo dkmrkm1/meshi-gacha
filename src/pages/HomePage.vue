@@ -11,8 +11,8 @@
 
     <div class="header">
       <span>今日のメシは...</span>
-      <v-ons-card style="margin: 10px 50px;">?</v-ons-card>
-      <v-ons-button modifier="material large" style="width: 70%;">決める！！</v-ons-button>
+      <v-ons-card id="food" style="margin: 10px 50px;">？</v-ons-card>
+      <v-ons-button modifier="material large" @click="getFood" style="width: 70%;">決める！！</v-ons-button>
     </div>
 
     <v-ons-list-title>メシリスト</v-ons-list-title>
@@ -97,6 +97,11 @@ export default {
     },
     close() {
       alert("hogeho");
+    },
+    getFood() {
+      const food = document.getElementById("food");
+      const random = Math.floor(Math.random() * this.list.length);
+      food.innerHTML = this.list[random].label;
     }
   }
 };
