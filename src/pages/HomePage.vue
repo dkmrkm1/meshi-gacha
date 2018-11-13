@@ -1,11 +1,9 @@
 <template>
   <v-ons-page>
     
-      
-        <v-ons-toolbar-button @click="$store.commit('splitter/toggle')" style="position: absolute;">
-          <v-ons-icon icon="fa-bars" style="margin: 15px; cursor: pointer;"></v-ons-icon>
-        </v-ons-toolbar-button>
-    
+    <v-ons-toolbar-button @click="$store.commit('splitter/toggle')" style="position: absolute;">
+      <v-ons-icon icon="fa-bars" style="margin: 8px; cursor: pointer;"></v-ons-icon>
+    </v-ons-toolbar-button>
 
     <div class="header">
       <p id="msg">メシガチャ！</p>
@@ -146,6 +144,7 @@ export default {
 
 <style lang="scss" scoped>
 .header {
+  margin-top: 30px;
   text-align: center;
 }
 .header__button {
