@@ -34,7 +34,7 @@
     </v-ons-fab>
 
     <v-ons-toast :visible.sync="toastVisible" animation="ascend">
-      <input type="text" v-model="newFood" placeholder="新しく追加する？" style="color:white; outline:none; background:none; border:none;">
+      <input type="text" v-model="newFood" placeholder="新しく追加する？" style="color:white; width:300px; outline:none; background:none; border:none;">
       <button @click="doAdd(); toastVisible = false;">
         <v-ons-icon icon="fa-plus" style="cursor:pointer; color:white;"></v-ons-icon>
       </button>
