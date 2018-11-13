@@ -1,26 +1,25 @@
 <template>
   <v-ons-page>
-    <v-ons-toolbar class="home-toolbar">
+    <v-ons-toolbar class="home-toolbar" style="background-color:#146EB4;">
       <div class="left">
         <v-ons-toolbar-button @click="$store.commit('splitter/toggle')">
           <v-ons-icon icon="fa-bars"></v-ons-icon>
         </v-ons-toolbar-button>
       </div>
-      <div class="center">{{ msg }}</div>
     </v-ons-toolbar>
 
     <div class="header">
       <p id="msg">今日のメシは...</p>
       <br>
-      <v-ons-card id="food" style="margin: 10px 100px;">
+      <v-ons-card id="food">
         <span>？</span>
       </v-ons-card>
       <br>
-      <v-ons-button id="sway-btn" v-if="list.length && !again" modifier="material large" @click="getFood" style="width:70%; color:black; background:#ffeb3b;">今日のメシを決める！</v-ons-button>
-      <v-ons-button v-if="!list.length" modifier="material large" @click="getFood" style="width:70%; color:black; background:#ffeb3b;">
+      <v-ons-button class="header__button" id="sway-btn" v-if="list.length && !again" modifier="material large" @click="getFood">今日のメシを決める！</v-ons-button>
+      <v-ons-button class="header__button" v-if="!list.length" modifier="material large" @click="getFood">
         <v-ons-icon icon="fa-plus" style="margin-right:5px;"></v-ons-icon>からメシを追加してね！
       </v-ons-button>
-      <v-ons-button id="sway-btn" v-if="again" modifier="material large" @click="getFood" style="width:70%; color:black; background:#ffeb3b;">ん〜もう1回...</v-ons-button>
+      <v-ons-button class="header__button" id="sway-btn" v-if="again" modifier="material large" @click="getFood">ん〜もう1回...</v-ons-button>
     </div>
 
     <v-ons-list-title style="margin-top:30px;">メシリスト</v-ons-list-title>
@@ -38,6 +37,7 @@
       position="bottom right"
       :visible="fabVisible" 
       @click="toastVisible = !toastVisible;"
+      style="background:#FF9900;"
     >
       <v-ons-icon icon="fa-plus" style="cursor:pointer;"></v-ons-icon>
     </v-ons-fab>
@@ -150,8 +150,26 @@ export default {
   margin-top: 30px;
   text-align: center;
 }
+.header__button {
+  width: 70%;
+  color: black;
+  background: #ff9900;
+  font-family: "Kosugi maru", sans-serif !important;
+}
+#msg {
+  color: #fff;
+  font-family: "Kosugi Maru", sans-serif;
+  font-weight: bold;
+}
+#food {
+  margin: 0 100px;
+  font-family: "Kosugi maru", sans-serif;
+}
 img {
   max-width: 300px;
+}
+.list {
+  font-family: "Kosugi maru", sans-serif !important;
 }
 ons-list-title {
   text-transform: none;
@@ -167,7 +185,7 @@ ons-card {
   cursor: pointer;
 }
 .toolbar-button {
-  color: gray;
+  color: #fff;
 }
 ::-webkit-input-placeholder {
   color: white;

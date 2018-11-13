@@ -41,4 +41,10 @@ export default {
 ons-splitter-side[side="left"][animation="overlay"] {
   border-right: 1px solid #bbb;
 }
+.page__content {
+  background-color: #146eb4 !important;
+}
+.toolbar + .page__background + .page__content {
+  top: 10px;
+}
 </style>
