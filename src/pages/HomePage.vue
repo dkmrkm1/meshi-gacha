@@ -27,19 +27,21 @@
 
     <v-ons-fab
       position="bottom right"
-      :visible="fabVisible"
+      :visible="fabVisible" 
+      @click="toastVisible = !toastVisible"
     >
       <v-ons-icon icon="fa-plus" style="cursor:pointer;"></v-ons-icon>
     </v-ons-fab>
+
+    <v-ons-toast :visible.sync="toastVisible" animation="ascend">
+      FABs up!
+      <button @click="toastVisible = false">ok</button>
+    </v-ons-toast>
 
   </v-ons-page>
 </template>
 
 <script>
-(function() {
-  alert("test");
-});
-
 export default {
   name: "home",
   data() {
@@ -48,27 +50,10 @@ export default {
       msg: "メシガチャ！",
       list: [
         {
-          label: "王将"
-        },
-        {
-          label: "ココイチ"
-        },
-        {
-          label: "ガスト"
-        },
-        {
-          label: "サイゼリア"
-        },
-        {
-          label: "日高屋"
-        },
-        {
-          label: "かつや"
-        },
-        {
-          label: "崎陽軒"
+          label: "hoge"
         }
-      ]
+      ],
+      toastVisible: false
     };
   },
   components: {},
@@ -76,6 +61,17 @@ export default {
   methods: {
     close() {
       alert("hogeho");
+    },
+    doAdd(value) {
+      this.list.push({
+        id: todoStorage.uid++,
+        label: label.value
+      });
+      label.value = "";
+    },
+    doRemove(item) {
+      var index = this.list.indexOf(item);
+      this.list.splice(index, 1);
     },
     getFood() {
       $("#food").removeClass("clash");
@@ -91,8 +87,7 @@ export default {
         $("#food").addClass("clash");
         $("#food").removeClass("sway");
       }, 2000);
-    },
-    slotStop() {}
+    }
   }
 };
 </script>
