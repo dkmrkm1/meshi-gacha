@@ -10,11 +10,17 @@
     </v-ons-toolbar>
 
     <div class="header">
-      <p>今日のメシは...</p>
-      <v-ons-card id="food" style="margin: 10px 50px;">
+      <p id="msg">今日のメシは...</p>
+      <br>
+      <v-ons-card id="food" style="margin: 10px 100px;">
         <span>？</span>
       </v-ons-card>
-      <v-ons-button modifier="material large" @click="getFood" style="width:70%; color:black; background:#ffeb3b;">今日のメシを決める！</v-ons-button>
+      <br>
+      <v-ons-button v-if="list.length && !again" modifier="material large" @click="getFood" style="width:70%; color:black; background:#ffeb3b;">今日のメシを決める！</v-ons-button>
+      <v-ons-button v-if="!list.length" modifier="material large" @click="getFood" style="width:70%; color:black; background:#ffeb3b;">
+        <v-ons-icon icon="fa-plus" style="margin-right:5px;"></v-ons-icon>からメシを追加してね！
+      </v-ons-button>
+      <v-ons-button v-if="again" modifier="material large" @click="getFood" style="width:70%; color:black; background:#ffeb3b;">ん〜もう1回...</v-ons-button>
     </div>
 
     <v-ons-list-title style="margin-top:30px;">メシリスト</v-ons-list-title>
@@ -22,6 +28,9 @@
       <v-ons-list-item v-for="item in list" :key="item.link">
         <div class="right" @click="doRemove(item)"><v-ons-icon fixed-width icon="fa-close"></v-ons-icon></div>
         <div class="center">{{ item.label }}</div>
+      </v-ons-list-item>
+      <v-ons-list-item v-if="!list.length">
+        <v-ons-icon icon="fa-plus" style="margin-right:5px;"></v-ons-icon>からメシを追加してね！
       </v-ons-list-item>
     </v-ons-list>
 
@@ -58,6 +67,7 @@ var listStorage = {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
   }
 };
+
 export default {
   name: "home",
   data() {
@@ -66,7 +76,8 @@ export default {
       msg: "メシガチャ！",
       list: [],
       newFood: "",
-      toastVisible: false
+      toastVisible: false,
+      again: false
     };
   },
   watch: {
@@ -110,17 +121,24 @@ export default {
     getFood() {
       $("#food").removeClass("clash");
       const food = document.getElementById("food");
+      const msg = document.getElementById("msg");
       const random = Math.floor(Math.random() * this.list.length);
       const randomFood = this.list[random].label;
 
       food.innerHTML = "どれにしよかな♪";
+      msg.innerHTML = "どれにしよかな♪";
       $("#food").addClass("sway");
+      $("#msg").addClass("sway");
 
       setTimeout(function() {
         food.innerHTML = randomFood;
+        msg.innerHTML = "これに決まり！";
+
         $("#food").addClass("clash");
+        $("#msg").removeClass("sway");
         $("#food").removeClass("sway");
       }, 2000);
+      this.again = true;
     }
   }
 };
@@ -163,13 +181,13 @@ ons-card {
 }
 @keyframes sway {
   0% {
-    transform: rotate(-3deg);
+    transform: rotate(-2deg);
   }
   50% {
-    transform: rotate(3deg);
+    transform: rotate(2deg);
   }
   100% {
-    transform: rotate(-3deg);
+    transform: rotate(-2deg);
   }
 }
 .clash {
