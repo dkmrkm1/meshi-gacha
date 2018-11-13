@@ -16,11 +16,11 @@
         <span>？</span>
       </v-ons-card>
       <br>
-      <v-ons-button v-if="list.length && !again" modifier="material large" @click="getFood" style="width:70%; color:black; background:#ffeb3b;">今日のメシを決める！</v-ons-button>
+      <v-ons-button id="sway-btn" v-if="list.length && !again" modifier="material large" @click="getFood" style="width:70%; color:black; background:#ffeb3b;">今日のメシを決める！</v-ons-button>
       <v-ons-button v-if="!list.length" modifier="material large" @click="getFood" style="width:70%; color:black; background:#ffeb3b;">
         <v-ons-icon icon="fa-plus" style="margin-right:5px;"></v-ons-icon>からメシを追加してね！
       </v-ons-button>
-      <v-ons-button v-if="again" modifier="material large" @click="getFood" style="width:70%; color:black; background:#ffeb3b;">ん〜もう1回...</v-ons-button>
+      <v-ons-button id="sway-btn" v-if="again" modifier="material large" @click="getFood" style="width:70%; color:black; background:#ffeb3b;">ん〜もう1回...</v-ons-button>
     </div>
 
     <v-ons-list-title style="margin-top:30px;">メシリスト</v-ons-list-title>
@@ -122,21 +122,22 @@ export default {
       $("#food").removeClass("clash");
       const food = document.getElementById("food");
       const msg = document.getElementById("msg");
+      const btnMsg = document.getElementById("sway-btn");
       const random = Math.floor(Math.random() * this.list.length);
       const randomFood = this.list[random].label;
 
       food.innerHTML = "どれにしよかな♪";
       msg.innerHTML = "どれにしよかな♪";
-      $("#food").addClass("sway");
-      $("#msg").addClass("sway");
+      btnMsg.innerHTML = "どれにしよかな♪";
+      $("#food, #msg, #sway-btn").addClass("sway");
 
       setTimeout(function() {
         food.innerHTML = randomFood;
         msg.innerHTML = "これに決まり！";
+        btnMsg.innerHTML = "ん〜もう1回...";
 
         $("#food").addClass("clash");
-        $("#msg").removeClass("sway");
-        $("#food").removeClass("sway");
+        $("#food, #msg, #sway-btn").removeClass("sway");
       }, 2000);
       this.again = true;
     }
