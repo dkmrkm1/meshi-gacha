@@ -20,7 +20,7 @@
     <v-ons-list-title style="margin-top:30px;">メシリスト</v-ons-list-title>
     <v-ons-list>
       <v-ons-list-item v-for="item in list" :key="item.link">
-        <div class="right" @click="close"><v-ons-icon fixed-width icon="fa-close"></v-ons-icon></div>
+        <div class="right" @click="doRemove(item)"><v-ons-icon fixed-width icon="fa-close"></v-ons-icon></div>
         <div class="center">{{ item.label }}</div>
       </v-ons-list-item>
     </v-ons-list>
@@ -44,6 +44,20 @@
 </template>
 
 <script>
+var STORAGE_KEY = "food-list";
+var listStorage = {
+  fetch: function() {
+    var list = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    list.forEach(function(item, index) {
+      item.id = index;
+    });
+    listStorage.uid = list.length;
+    return list;
+  },
+  save: function(list) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+  }
+};
 export default {
   name: "home",
   data() {
@@ -55,8 +69,18 @@ export default {
       toastVisible: false
     };
   },
+  watch: {
+    list: {
+      handler: function(list) {
+        listStorage.save(list);
+      },
+      deep: true
+    }
+  },
   components: {},
-  mounted() {},
+  created() {
+    this.list = listStorage.fetch();
+  },
   methods: {
     close() {
       alert("hogeho");
@@ -64,17 +88,21 @@ export default {
     add() {
       alert("tet");
     },
-    // listの追加処理
+    // 追加処理
     doAdd(event) {
       const label = this.newFood;
       if (!label) {
         return;
       }
+
+      // { ID, label }
       this.list.push({
+        id: listStorage.uid++,
         label: this.newFood
       });
       this.newFood = "";
     },
+    // 削除処理
     doRemove(item) {
       var index = this.list.indexOf(item);
       this.list.splice(index, 1);
