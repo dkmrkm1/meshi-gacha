@@ -1,15 +1,14 @@
 <template>
   <v-ons-page>
-    <v-ons-toolbar class="home-toolbar" style="background-color:#146EB4;">
-      <div class="left">
+    
+      
         <v-ons-toolbar-button @click="$store.commit('splitter/toggle')">
-          <v-ons-icon icon="fa-bars"></v-ons-icon>
+          <v-ons-icon icon="fa-bars" style="margin: 15px; cursor: pointer;"></v-ons-icon>
         </v-ons-toolbar-button>
-      </div>
-    </v-ons-toolbar>
+    
 
     <div class="header">
-      <p id="msg">今日のメシは...</p>
+      <p id="msg">メシガチャ！</p>
       <br>
       <v-ons-card id="food">
         <span>？</span>
@@ -147,22 +146,25 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  margin-top: 30px;
   text-align: center;
 }
 .header__button {
-  width: 70%;
+  width: 50%;
   color: black;
   background: #ff9900;
   font-family: "Kosugi maru", sans-serif !important;
 }
 #msg {
+  margin: 0;
+  margin-bottom: 10px;
   color: #fff;
   font-family: "Kosugi Maru", sans-serif;
   font-weight: bold;
+  font-size: 2.1rem;
 }
 #food {
   margin: 0 100px;
+  margin-bottom: 10px;
   font-family: "Kosugi maru", sans-serif;
 }
 img {
@@ -173,9 +175,6 @@ img {
 }
 ons-list-title {
   text-transform: none;
-}
-ons-list-title:not(:first-of-type) {
-  margin-top: 30px;
 }
 ons-card {
   text-align: center;
