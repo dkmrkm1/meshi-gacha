@@ -28,14 +28,16 @@
     <v-ons-fab
       position="bottom right"
       :visible="fabVisible" 
-      @click="toastVisible = !toastVisible"
+      @click="toastVisible = !toastVisible;"
     >
       <v-ons-icon icon="fa-plus" style="cursor:pointer;"></v-ons-icon>
     </v-ons-fab>
 
     <v-ons-toast :visible.sync="toastVisible" animation="ascend">
-      FABs up!
-      <button @click="toastVisible = false">ok</button>
+      <input type="text" v-model="newFood" placeholder="新しく追加する？" style="color:white; outline:none; background:none; border:none;">
+      <button @click="doAdd(); toastVisible = false;">
+        <v-ons-icon icon="fa-plus" style="cursor:pointer; color:white;"></v-ons-icon>
+      </button>
     </v-ons-toast>
 
   </v-ons-page>
@@ -48,11 +50,8 @@ export default {
     return {
       fabVisible: true,
       msg: "メシガチャ！",
-      list: [
-        {
-          label: "hoge"
-        }
-      ],
+      list: [],
+      newFood: "",
       toastVisible: false
     };
   },
@@ -62,12 +61,19 @@ export default {
     close() {
       alert("hogeho");
     },
-    doAdd(value) {
+    add() {
+      alert("tet");
+    },
+    // listの追加処理
+    doAdd(event) {
+      const label = this.newFood;
+      if (!label) {
+        return;
+      }
       this.list.push({
-        id: todoStorage.uid++,
-        label: label.value
+        label: this.newFood
       });
-      label.value = "";
+      this.newFood = "";
     },
     doRemove(item) {
       var index = this.list.indexOf(item);
@@ -115,6 +121,9 @@ ons-card {
 }
 .toolbar-button {
   color: gray;
+}
+::-webkit-input-placeholder {
+  color: white;
 }
 
 /************************
