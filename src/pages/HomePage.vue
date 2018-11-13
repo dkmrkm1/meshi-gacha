@@ -10,45 +10,20 @@
     </v-ons-toolbar>
 
     <div class="header">
-      <span>今日のメシは...</span>
-      <v-ons-card id="food" style="margin: 10px 50px;">？</v-ons-card>
-      <v-ons-button modifier="material large" @click="getFood" style="width: 70%;">決める！！</v-ons-button>
+      <p>今日のメシは...</p>
+      <v-ons-card id="food" style="margin: 10px 50px;">
+        <span>？</span>
+      </v-ons-card>
+      <v-ons-button modifier="material large" @click="getFood" style="width:70%; color:black; background:#ffeb3b;">今日のメシを決める！</v-ons-button>
     </div>
 
-    <v-ons-list-title>メシリスト</v-ons-list-title>
+    <v-ons-list-title style="margin-top:30px;">メシリスト</v-ons-list-title>
     <v-ons-list>
       <v-ons-list-item v-for="item in list" :key="item.link">
         <div class="right" @click="close"><v-ons-icon fixed-width icon="fa-close"></v-ons-icon></div>
         <div class="center">{{ item.label }}</div>
       </v-ons-list-item>
     </v-ons-list>
-
-    <v-ons-list-title>メシリスト</v-ons-list-title>
-    <v-ons-row>
-      <v-ons-col width="50%" v-for="item in list" :key="item.link">
-        <v-ons-card>{{ item.label }}</v-ons-card>
-      </v-ons-col>
-    </v-ons-row>
-
-    <!--
-    <v-ons-list-title>Vue.js Ecosystem</v-ons-list-title>
-    <v-ons-row>
-      <v-ons-col>
-        <v-ons-card @click="goTo('http://router.vuejs.org/')">vue-router</v-ons-card>
-      </v-ons-col>
-      <v-ons-col>
-        <v-ons-card @click="goTo('http://vuex.vuejs.org/')">vuex</v-ons-card>
-      </v-ons-col>
-    </v-ons-row>
-    <v-ons-row>
-      <v-ons-col>
-        <v-ons-card @click="goTo('http://vue-loader.vuejs.org/')">vue-loader</v-ons-card>
-      </v-ons-col>
-      <v-ons-col>
-        <v-ons-card @click="goTo('https://github.com/vuejs/awesome-vue')">awesome-vue</v-ons-card>
-      </v-ons-col>
-    </v-ons-row>
-    -->
 
     <v-ons-fab
       position="bottom right"
@@ -61,6 +36,10 @@
 </template>
 
 <script>
+(function() {
+  alert("test");
+});
+
 export default {
   name: "home",
   data() {
@@ -72,7 +51,7 @@ export default {
           label: "王将"
         },
         {
-          label: "カレー"
+          label: "ココイチ"
         },
         {
           label: "ガスト"
@@ -81,33 +60,44 @@ export default {
           label: "サイゼリア"
         },
         {
-          label: "ラーメン"
+          label: "日高屋"
         },
         {
-          label: "honokuni"
+          label: "かつや"
+        },
+        {
+          label: "崎陽軒"
         }
       ]
     };
   },
+  components: {},
+  mounted() {},
   methods: {
-    goTo(url) {
-      const newWindow = window.open(url, "_blank");
-      newWindow.opener = null;
-      newWindow.location = url;
-    },
     close() {
       alert("hogeho");
     },
     getFood() {
+      $("#food").removeClass("clash");
       const food = document.getElementById("food");
       const random = Math.floor(Math.random() * this.list.length);
-      food.innerHTML = this.list[random].label;
-    }
+      const randomFood = this.list[random].label;
+
+      food.innerHTML = "どれにしよかな♪";
+      $("#food").addClass("sway");
+
+      setTimeout(function() {
+        food.innerHTML = randomFood;
+        $("#food").addClass("clash");
+        $("#food").removeClass("sway");
+      }, 2000);
+    },
+    slotStop() {}
   }
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .header {
   margin-top: 30px;
   text-align: center;
@@ -130,5 +120,50 @@ ons-card {
 }
 .toolbar-button {
   color: gray;
+}
+
+/************************
+******* animation *******
+************************/
+.sway {
+  display: inline-block;
+  animation: sway 1s infinite;
+}
+@keyframes sway {
+  0% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+  100% {
+    transform: rotate(-3deg);
+  }
+}
+.clash {
+  animation: clash 1s infinite;
+}
+@keyframes clash {
+  0% {
+    transform: scale(1, 1) translate(0%, 0%);
+  }
+  40% {
+    transform: scale(0.95, 1.2) translate(0%, -10%);
+  }
+  50% {
+    transform: scale(1.1, 0.9) translate(0%, 5%);
+  }
+  60% {
+    transform: scale(0.95, 1.05) translate(0%, -3%);
+  }
+  70% {
+    transform: scale(1.05, 0.95) translate(0%, 3%);
+  }
+  80% {
+    transform: scale(1, 1) translate(0%, 0%);
+  }
+  100% {
+    transform: scale(1, 1) translate(0%, 0%);
+  }
 }
 </style>
