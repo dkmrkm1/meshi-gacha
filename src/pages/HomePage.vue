@@ -2,7 +2,7 @@
   <v-ons-page>
     
     <v-ons-toolbar-button @click="$store.commit('splitter/toggle')" style="position: absolute;">
-      <v-ons-icon icon="fa-bars" style="margin: 5px; cursor: pointer;"></v-ons-icon>
+      <v-ons-icon icon="fa-bars" class="side-nav"></v-ons-icon>
     </v-ons-toolbar-button>
 
     <div class="header">
@@ -143,6 +143,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.side-nav {
+  margin-top: 10px;
+  margin-left: 5px;
+  cursor: pointer;
+}
 .header {
   margin-top: 30px;
   text-align: center;
