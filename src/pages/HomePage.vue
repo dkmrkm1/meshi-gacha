@@ -6,13 +6,13 @@
     </v-ons-toolbar-button>
 
     <div class="header">
-      <!-- <p id="msg">メシガチャ！</p> -->
       <img id="header-logo" src="../assets/header-logo.png" style="margin-bottom:20px; margin-left:19px;">
       <br>
       <v-ons-card id="food">
         <span>？</span>
       </v-ons-card>
       <br>
+      <!-- <img id="header-logo" src="../assets/btn-msg.png" style="border-radius:7px; box-shadow:0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12), 0 3px 1px -2px rgba(0, 0, 0, .2);">  -->
       <v-ons-button class="header__button" id="sway-btn" v-if="list.length && !again" modifier="material large" @click="getFood">今日のメシを決める！</v-ons-button>
       <v-ons-button class="header__button" v-if="!list.length" modifier="material large" @click="getFood">
         <v-ons-icon icon="fa-plus" style="margin-right:5px;"></v-ons-icon>からメシを追加してね！
