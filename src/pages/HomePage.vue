@@ -19,7 +19,7 @@
       <v-ons-button class="header__button" id="sway-btn" v-if="again" modifier="material large" @click="getFood">ん〜もう1回...</v-ons-button>
     </div>
 
-    <v-ons-list-title style="margin-top:30px;">メシリスト</v-ons-list-title>
+    <v-ons-list-title style="color:white; margin-top:30px;">メシリスト</v-ons-list-title>
     <v-ons-list>
       <v-ons-list-item v-for="item in list" :key="item.link">
         <div class="right" @click="doRemove(item)"><v-ons-icon fixed-width icon="fa-close"></v-ons-icon></div>

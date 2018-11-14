@@ -10,6 +10,7 @@ import $ons from 'vue-onsenui/esm'
 import * as VOns from './vue-onsen-components'
 import store from './store'
 import App from './App'
+import router from './router'
 
 Vue.config.productionTip = false
 
@@ -19,6 +20,7 @@ Object.values(VOns).forEach(comp => Vue.component(comp.name, comp))
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  router,
   store,
   template: '<App/>',
   components: { App }
