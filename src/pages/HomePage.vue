@@ -6,7 +6,8 @@
     </v-ons-toolbar-button>
 
     <div class="header">
-      <p id="msg">メシガチャ！</p>
+      <!-- <p id="msg">メシガチャ！</p> -->
+      <img id="header-logo" src="../assets/header-logo.png" style="margin-bottom:20px; margin-left:19px;">
       <br>
       <v-ons-card id="food">
         <span>？</span>
@@ -118,23 +119,23 @@ export default {
     getFood() {
       $("#food").removeClass("clash");
       const food = document.getElementById("food");
-      const msg = document.getElementById("msg");
+      // const msg = document.getElementById("msg");
       const btnMsg = document.getElementById("sway-btn");
       const random = Math.floor(Math.random() * this.list.length);
       const randomFood = this.list[random].label;
 
       food.innerHTML = "どれにしよかな♪";
-      msg.innerHTML = "どれにしよかな♪";
+      // msg.innerHTML = "どれにしよかな♪";
       btnMsg.innerHTML = "どれにしよかな♪";
-      $("#food, #msg, #sway-btn").addClass("sway");
+      $("#food, #header-logo, #sway-btn").addClass("sway");
 
       setTimeout(function() {
         food.innerHTML = randomFood;
-        msg.innerHTML = "これに決まり！";
+        // msg.innerHTML = "これに決まり！";
         btnMsg.innerHTML = "ん〜もう1回...";
 
         $("#food").addClass("clash");
-        $("#food, #msg, #sway-btn").removeClass("sway");
+        $("#food, #header-logo, #sway-btn").removeClass("sway");
       }, 2000);
       this.again = true;
     }
