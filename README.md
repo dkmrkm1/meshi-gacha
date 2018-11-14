@@ -4,6 +4,13 @@
 
 An application that decides today's rice created with Vue.js and OnsenUI supported PWA.
 
+## Usage
+1. Add frequent shops and menus to the list
+2. Press a button to decide today's rice
+
+## Demo
+![image](https://i.imgur.com/hDZCDya.gif)
+
 ## Build Setup
 
 ``` bash
@@ -20,4 +27,5 @@ npm run build
 npm run build --report
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## License
+MIT
