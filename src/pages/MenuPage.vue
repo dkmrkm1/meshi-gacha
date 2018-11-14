@@ -23,7 +23,7 @@
       </div>
       <p>スマホの方が使いやすいよ♪　気に入った人は「ホーム画面に追加」してね♪</p>
     </div>
-    <v-ons-list-title style="margin-right:10px; text-align:right; color:white">@duuun02</v-ons-list-title>
+    <v-ons-list-title style="margin-right:10px; text-align:right; color:white">&copy;Daisuke Murakami / Duuun</v-ons-list-title>
     
   </v-ons-page>
 </template>
@@ -62,7 +62,7 @@ export default {
 <style scoped>
 .header {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 25px;
 }
 img {
   max-width: 150px;
