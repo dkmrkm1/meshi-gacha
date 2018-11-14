@@ -2,7 +2,7 @@
   <v-ons-page>
     
     <v-ons-toolbar-button @click="$store.commit('splitter/toggle')" style="position: absolute;">
-      <v-ons-icon icon="fa-bars" style="margin: 8px; cursor: pointer;"></v-ons-icon>
+      <v-ons-icon icon="fa-bars" style="margin: 5px; cursor: pointer;"></v-ons-icon>
     </v-ons-toolbar-button>
 
     <div class="header">
